@@ -8,3 +8,13 @@ body {
     align-items: center;
     min-height: 100vh;
 }
+
+.game-ui {
+    display: flex;
+    flex-direction: column;
+}
+
+.selections {
+    display: flex;
+    flex-direction: row;
+}

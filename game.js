@@ -78,31 +78,35 @@ function game() {
 let roundPlayerChoice = '';
 let roundComputerChoice = '';
 
+const roundPlayerChoiceDisplay = document.querySelector('#player-selection-display');
+const roundComputerChoiceDisplay = document.querySelector('#computer-selection-display');
+const roundResultDisplay = document.querySelector('.round-result-display');
 const playerButtonSelection = document.querySelector('.player-selection');
+
 playerButtonSelection.addEventListener('click', (buttonClicked) => {
     let whichButtonClicked = buttonClicked.target;
 
     switch (whichButtonClicked.id) {
         case 'rock':
             roundPlayerChoice = 'rock';
-            console.log("The player's choice is: " + roundPlayerChoice);
             roundComputerChoice = getComputerChoice();
-            console.log("The computer's choice is: " + roundComputerChoice);
-            console.log(playRound(roundPlayerChoice, roundComputerChoice));
+            roundPlayerChoiceDisplay.textContent = "The player's choice is: " + roundPlayerChoice;
+            roundComputerChoiceDisplay.textContent = "The computer's choice is: " + roundComputerChoice;
+            roundResultDisplay.textContent = playRound(roundPlayerChoice, roundComputerChoice);
             break;
         case 'paper':
             roundPlayerChoice = 'paper';
-            console.log("The player's choice is: " + roundPlayerChoice);
             roundComputerChoice = getComputerChoice();
-            console.log("The computer's choice is: " + roundComputerChoice);
-            console.log(playRound(roundPlayerChoice, roundComputerChoice));
+            roundPlayerChoiceDisplay.textContent = "The player's choice is: " + roundPlayerChoice;
+            roundComputerChoiceDisplay.textContent = "The computer's choice is: " + roundComputerChoice;
+            roundResultDisplay.textContent = playRound(roundPlayerChoice, roundComputerChoice);
             break;
         case 'scissors':
             roundPlayerChoice = 'scissors';
-            console.log("The player's choice is: " + roundPlayerChoice);
             roundComputerChoice = getComputerChoice();
-            console.log("The computer's choice is: " + roundComputerChoice);
-            console.log(playRound(roundPlayerChoice, roundComputerChoice));
+            roundPlayerChoiceDisplay.textContent = "The player's choice is: " + roundPlayerChoice;
+            roundComputerChoiceDisplay.textContent = "The computer's choice is: " + roundComputerChoice;
+            roundResultDisplay.textContent = playRound(roundPlayerChoice, roundComputerChoice);
             break;
     }
 });
