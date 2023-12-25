@@ -41,7 +41,10 @@ function playRound(playerSelection, computerSelection) {
         winner = "computer";
         return `You lose, ${computerSelection} beats ${playerSelection}!`;
     } else {
-        return "Please write a valid choice! (Rock, paper or scissors)."
+        //The winner is "none" because without specifying a winner,
+        //The program will assume the winner is the same than in the last round.
+        winner = "none";
+        return "Please write a valid choice! (Rock, paper or scissors).";
     }
 }
 
@@ -50,9 +53,8 @@ function game() {
     //Create variables to keep track of the score
     let playerScore = 0;
     let computerScore = 0;
-    for (let roundCount = 1; roundCount <= 5; roundCount++) {
-        //Create a local variable to store the player's selection specific to this round.
-        //Make the player entry case-insensitive.
+    //Make the game continue indefinetily.
+    while (true) {
         let roundPlayerChoice = prompt("What is your choice?").toLowerCase();
         console.log("The player's choice is: " + roundPlayerChoice);
         //Create a local variable to store the computer's selection specific to this round.
@@ -68,16 +70,8 @@ function game() {
         }
         console.log("Current player's score: " + playerScore);
         console.log("Current computer's score is: " + computerScore);
-        console.log("Round count: " + roundCount);
-    }
-    console.log(`Final results: the player scored ${playerScore} points and the computer scored ${computerScore} points.`)
-    if (playerScore > computerScore) {
-        console.log("Player victory!");
-    } else if (computerScore > playerScore) {
-        console.log("Computer victory!");
-    } else {
-        console.log("It's a tie!");
     }
 }
 
+//Start the game
 game();
