@@ -14,6 +14,11 @@ body {
     flex-direction: column;
 }
 
+.score-count {
+    display: flex;
+    flex-direction: row;
+}
+
 .selections {
     display: flex;
     flex-direction: row;

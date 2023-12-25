@@ -78,9 +78,14 @@ function game() {
 let roundPlayerChoice = '';
 let roundComputerChoice = '';
 
+let playerScore = 0;
+let computerScore = 0;
+
 const roundPlayerChoiceDisplay = document.querySelector('#player-selection-display');
 const roundComputerChoiceDisplay = document.querySelector('#computer-selection-display');
 const roundResultDisplay = document.querySelector('.round-result-display');
+const playerScoreDisplay = document.querySelector('#player-score');
+const computerScoreDisplay = document.querySelector('#computer-score');
 const playerButtonSelection = document.querySelector('.player-selection');
 
 playerButtonSelection.addEventListener('click', (buttonClicked) => {
@@ -93,6 +98,14 @@ playerButtonSelection.addEventListener('click', (buttonClicked) => {
             roundPlayerChoiceDisplay.textContent = "The player's choice is: " + roundPlayerChoice;
             roundComputerChoiceDisplay.textContent = "The computer's choice is: " + roundComputerChoice;
             roundResultDisplay.textContent = playRound(roundPlayerChoice, roundComputerChoice);
+            if (winner === "player") {
+                playerScore++;
+            } else if (winner === "computer") {
+                computerScore++;
+            }
+            playerScoreDisplay.textContent = "Current player's score: " + playerScore;
+            computerScoreDisplay.textContent = "Current computer's score is: " + computerScore;
+            countRounds();
             break;
         case 'paper':
             roundPlayerChoice = 'paper';
@@ -100,6 +113,14 @@ playerButtonSelection.addEventListener('click', (buttonClicked) => {
             roundPlayerChoiceDisplay.textContent = "The player's choice is: " + roundPlayerChoice;
             roundComputerChoiceDisplay.textContent = "The computer's choice is: " + roundComputerChoice;
             roundResultDisplay.textContent = playRound(roundPlayerChoice, roundComputerChoice);
+            if (winner === "player") {
+                playerScore++;
+            } else if (winner === "computer") {
+                computerScore++;
+            }
+            playerScoreDisplay.textContent = "Current player's score: " + playerScore;
+            computerScoreDisplay.textContent = "Current computer's score is: " + computerScore;
+            countRounds();
             break;
         case 'scissors':
             roundPlayerChoice = 'scissors';
@@ -107,9 +128,67 @@ playerButtonSelection.addEventListener('click', (buttonClicked) => {
             roundPlayerChoiceDisplay.textContent = "The player's choice is: " + roundPlayerChoice;
             roundComputerChoiceDisplay.textContent = "The computer's choice is: " + roundComputerChoice;
             roundResultDisplay.textContent = playRound(roundPlayerChoice, roundComputerChoice);
+            if (winner === "player") {
+                playerScore++;
+            } else if (winner === "computer") {
+                computerScore++;
+            }
+            playerScoreDisplay.textContent = "Current player's score: " + playerScore;
+            computerScoreDisplay.textContent = "Current computer's score is: " + computerScore;
+            countRounds();
             break;
     }
 });
+
+//Count rounds
+let round = 1;
+const roundCountDisplay = document.querySelector('.round-count');
+const resultsDisplay = document.querySelector('.results');
+const selectionDisplay = document.querySelector('.selections');
+const buttonPlayAgain = document.createElement('button');
+buttonPlayAgain.textContent = "Play again";
+const gameUI = document.querySelector('.game-ui');
+
+function countRounds() {
+    //Count rounds from 1 to 5
+    if (round < 5 ) {
+        round++;
+        roundCountDisplay.textContent = "Round: " + round;
+    } else if (round == 5) {
+        round++;
+        roundCountDisplay.textContent = determineGameWinner(playerScore, computerScore);
+        resultsDisplay.removeChild(selectionDisplay);
+        resultsDisplay.removeChild(roundResultDisplay);
+        gameUI.removeChild(playerButtonSelection);
+        gameUI.appendChild(buttonPlayAgain);
+    } else {
+        round = 1;
+        roundCountDisplay.textContent = "Round: " + round;
+        resultsDisplay.appendChild(selectionDisplay);
+        resultsDisplay.appendChild(roundResultDisplay);
+        gameUI.appendChild(playerButtonSelection);
+        gameUI.removeChild(buttonPlayAgain);
+    }
+
+}
+
+//Play again functionality
+buttonPlayAgain.addEventListener('click', () => {
+    countRounds();
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreDisplay.textContent = "Current player's score: " + playerScore;
+    computerScoreDisplay.textContent = "Current computer's score is: " + computerScore;
+});
+
+//Determine game winner after 5 rounds
+function determineGameWinner (finalPlayerScore, finalComputerScore) {
+    if (finalPlayerScore > finalComputerScore) {
+        return "Player victory!";
+    } else {
+        return "Game over!";
+    }
+}
 
 //Start the game
 //PROBLEM: starts running before DOM fully loaded on screen when loaded for first time.
