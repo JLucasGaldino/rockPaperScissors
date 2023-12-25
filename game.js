@@ -48,7 +48,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-//Play 5 rounds
+//Play a succession of rounds and keep track of score
 function game() {
     //Create variables to keep track of the score
     let playerScore = 0;
@@ -73,5 +73,24 @@ function game() {
     }
 }
 
+const playerButtonSelection = document.querySelector('.player-selection');
+playerButtonSelection.addEventListener('click', (buttonClicked) => {
+    let whichButtonClicked = buttonClicked.target;
+
+    switch (whichButtonClicked.id) {
+        case 'rock':
+            console.log('rock was clicked');
+            break;
+        case 'paper':
+            console.log('paper was clicked');
+            break;
+        case 'scissors':
+            console.log('scissors was clicked');
+            break;
+    }
+});
+
 //Start the game
+//PROBLEM: starts running before DOM fully loaded on screen when loaded for first time.
+//PSEUDO: start game when any button is pressed that hasn't been previously.
 game();
