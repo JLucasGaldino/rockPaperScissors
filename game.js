@@ -79,33 +79,7 @@ function playRound(playerSelection, computerSelection) {
         return "Please write a valid choice! (Rock, paper or scissors).";
     }
 }
-/*
-//Play a succession of rounds and keep track of score
-function game() {
-    //Create variables to keep track of the score
-    let playerScore = 0;
-    let computerScore = 0;
-    //Make the game continue indefinetily.
-    while (true) {
-        let roundPlayerChoice = whichButtonClicked;
-        prompt("What is your choice?").toLowerCase();
-        console.log("Your choice: " + roundPlayerChoice);
-        //Create a local variable to store the computer's selection specific to this round.
-        let roundComputerChoice = getComputerChoice();
-        console.log("Computer choice: " + roundComputerChoice);
-        //Start playing a round.
-        console.log(playRound(roundPlayerChoice, roundComputerChoice));
-        //update scores
-        if (winner === "player") {
-            playerScore++;
-        } else if (winner === "computer") {
-            computerScore++;
-        }
-        console.log("Player score: " + playerScore);
-        console.log("Computer score: " + computerScore);
-    }
-}
-*/
+
 //When player clicks a button, the option is logged.
 let roundPlayerChoice = '';
 let roundComputerChoice = '';
@@ -165,11 +139,10 @@ playerButtonSelection.addEventListener('click', (buttonClicked) => {
     }
 });
 
-//Count rounds
+//Count rounds from 1 to 5
 let round = 1;
 
 function countRounds() {
-    //Count rounds from 1 to 5
     if (round < 5 ) {
         round++;
         roundCountDisplay.textContent = "Round: " + round;
@@ -208,8 +181,3 @@ function determineGameWinner (finalPlayerScore, finalComputerScore) {
         return "Game over!";
     }
 }
-
-//Start the game
-//PROBLEM: starts running before DOM fully loaded on screen when loaded for first time.
-//PSEUDO: start game when any button is pressed that hasn't been previously.
-//game();
