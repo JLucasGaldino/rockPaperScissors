@@ -47,7 +47,7 @@ function playRound(playerSelection, computerSelection) {
         return "Please write a valid choice! (Rock, paper or scissors).";
     }
 }
-
+/*
 //Play a succession of rounds and keep track of score
 function game() {
     //Create variables to keep track of the score
@@ -55,7 +55,8 @@ function game() {
     let computerScore = 0;
     //Make the game continue indefinetily.
     while (true) {
-        let roundPlayerChoice = prompt("What is your choice?").toLowerCase();
+        let roundPlayerChoice = whichButtonClicked;
+        prompt("What is your choice?").toLowerCase();
         console.log("The player's choice is: " + roundPlayerChoice);
         //Create a local variable to store the computer's selection specific to this round.
         let roundComputerChoice = getComputerChoice();
@@ -72,6 +73,10 @@ function game() {
         console.log("Current computer's score is: " + computerScore);
     }
 }
+*/
+//When player clicks a button, the option is logged.
+let roundPlayerChoice = '';
+let roundComputerChoice = '';
 
 const playerButtonSelection = document.querySelector('.player-selection');
 playerButtonSelection.addEventListener('click', (buttonClicked) => {
@@ -79,13 +84,25 @@ playerButtonSelection.addEventListener('click', (buttonClicked) => {
 
     switch (whichButtonClicked.id) {
         case 'rock':
-            console.log('rock was clicked');
+            roundPlayerChoice = 'rock';
+            console.log("The player's choice is: " + roundPlayerChoice);
+            roundComputerChoice = getComputerChoice();
+            console.log("The computer's choice is: " + roundComputerChoice);
+            console.log(playRound(roundPlayerChoice, roundComputerChoice));
             break;
         case 'paper':
-            console.log('paper was clicked');
+            roundPlayerChoice = 'paper';
+            console.log("The player's choice is: " + roundPlayerChoice);
+            roundComputerChoice = getComputerChoice();
+            console.log("The computer's choice is: " + roundComputerChoice);
+            console.log(playRound(roundPlayerChoice, roundComputerChoice));
             break;
         case 'scissors':
-            console.log('scissors was clicked');
+            roundPlayerChoice = 'scissors';
+            console.log("The player's choice is: " + roundPlayerChoice);
+            roundComputerChoice = getComputerChoice();
+            console.log("The computer's choice is: " + roundComputerChoice);
+            console.log(playRound(roundPlayerChoice, roundComputerChoice));
             break;
     }
 });
@@ -93,4 +110,4 @@ playerButtonSelection.addEventListener('click', (buttonClicked) => {
 //Start the game
 //PROBLEM: starts running before DOM fully loaded on screen when loaded for first time.
 //PSEUDO: start game when any button is pressed that hasn't been previously.
-game();
+//game();
