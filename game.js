@@ -1,3 +1,35 @@
+//Establish all the DOM nodes that wull need manipulation
+
+//Entire game UI portion of the window
+const gameUI = document.querySelector('.game-ui');
+
+//Allows to display all game information relevant to the gameplay
+const resultsDisplay = document.querySelector('.results');
+
+//Count number of rounds
+const roundCountDisplay = document.querySelector('.round-count');
+
+//Display scores
+const playerScoreDisplay = document.querySelector('#player-score');
+const computerScoreDisplay = document.querySelector('#computer-score');
+
+//Allows to display computer and player's choice
+const selectionDisplay = document.querySelector('.selections');
+
+//Player or computer's choice for the specific round
+const roundPlayerChoiceDisplay = document.querySelector('#player-selection-display');
+const roundComputerChoiceDisplay = document.querySelector('#computer-selection-display');
+
+//Display results for the specific round
+const roundResultDisplay = document.querySelector('.round-result-display');
+
+//Allow player to make a selection through buttons
+const playerButtonSelection = document.querySelector('.player-selection');
+
+//Play again button
+const buttonPlayAgain = document.createElement('button');
+buttonPlayAgain.textContent = "Play again";
+
 // Randomly select a value between rock, paper, and scissors.
 function getComputerChoice() {
     let numberSelection = Math.ceil(Math.random() * 3);
@@ -57,10 +89,10 @@ function game() {
     while (true) {
         let roundPlayerChoice = whichButtonClicked;
         prompt("What is your choice?").toLowerCase();
-        console.log("The player's choice is: " + roundPlayerChoice);
+        console.log("Your choice: " + roundPlayerChoice);
         //Create a local variable to store the computer's selection specific to this round.
         let roundComputerChoice = getComputerChoice();
-        console.log("The computer's choice is: " + roundComputerChoice);
+        console.log("Computer choice: " + roundComputerChoice);
         //Start playing a round.
         console.log(playRound(roundPlayerChoice, roundComputerChoice));
         //update scores
@@ -69,8 +101,8 @@ function game() {
         } else if (winner === "computer") {
             computerScore++;
         }
-        console.log("Current player's score: " + playerScore);
-        console.log("Current computer's score is: " + computerScore);
+        console.log("Player score: " + playerScore);
+        console.log("Computer score: " + computerScore);
     }
 }
 */
@@ -81,13 +113,6 @@ let roundComputerChoice = '';
 let playerScore = 0;
 let computerScore = 0;
 
-const roundPlayerChoiceDisplay = document.querySelector('#player-selection-display');
-const roundComputerChoiceDisplay = document.querySelector('#computer-selection-display');
-const roundResultDisplay = document.querySelector('.round-result-display');
-const playerScoreDisplay = document.querySelector('#player-score');
-const computerScoreDisplay = document.querySelector('#computer-score');
-const playerButtonSelection = document.querySelector('.player-selection');
-
 playerButtonSelection.addEventListener('click', (buttonClicked) => {
     let whichButtonClicked = buttonClicked.target;
 
@@ -95,46 +120,46 @@ playerButtonSelection.addEventListener('click', (buttonClicked) => {
         case 'rock':
             roundPlayerChoice = 'rock';
             roundComputerChoice = getComputerChoice();
-            roundPlayerChoiceDisplay.textContent = "The player's choice is: " + roundPlayerChoice;
-            roundComputerChoiceDisplay.textContent = "The computer's choice is: " + roundComputerChoice;
+            roundPlayerChoiceDisplay.textContent = "Your choice: " + roundPlayerChoice;
+            roundComputerChoiceDisplay.textContent = "Computer choice: " + roundComputerChoice;
             roundResultDisplay.textContent = playRound(roundPlayerChoice, roundComputerChoice);
             if (winner === "player") {
                 playerScore++;
             } else if (winner === "computer") {
                 computerScore++;
             }
-            playerScoreDisplay.textContent = "Current player's score: " + playerScore;
-            computerScoreDisplay.textContent = "Current computer's score is: " + computerScore;
+            playerScoreDisplay.textContent = "Player score: " + playerScore;
+            computerScoreDisplay.textContent = "Computer score: " + computerScore;
             countRounds();
             break;
         case 'paper':
             roundPlayerChoice = 'paper';
             roundComputerChoice = getComputerChoice();
-            roundPlayerChoiceDisplay.textContent = "The player's choice is: " + roundPlayerChoice;
-            roundComputerChoiceDisplay.textContent = "The computer's choice is: " + roundComputerChoice;
+            roundPlayerChoiceDisplay.textContent = "Your choice: " + roundPlayerChoice;
+            roundComputerChoiceDisplay.textContent = "Computer choice: " + roundComputerChoice;
             roundResultDisplay.textContent = playRound(roundPlayerChoice, roundComputerChoice);
             if (winner === "player") {
                 playerScore++;
             } else if (winner === "computer") {
                 computerScore++;
             }
-            playerScoreDisplay.textContent = "Current player's score: " + playerScore;
-            computerScoreDisplay.textContent = "Current computer's score is: " + computerScore;
+            playerScoreDisplay.textContent = "Player score: " + playerScore;
+            computerScoreDisplay.textContent = "Computer score: " + computerScore;
             countRounds();
             break;
         case 'scissors':
             roundPlayerChoice = 'scissors';
             roundComputerChoice = getComputerChoice();
-            roundPlayerChoiceDisplay.textContent = "The player's choice is: " + roundPlayerChoice;
-            roundComputerChoiceDisplay.textContent = "The computer's choice is: " + roundComputerChoice;
+            roundPlayerChoiceDisplay.textContent = "Your choice: " + roundPlayerChoice;
+            roundComputerChoiceDisplay.textContent = "Computer choice: " + roundComputerChoice;
             roundResultDisplay.textContent = playRound(roundPlayerChoice, roundComputerChoice);
             if (winner === "player") {
                 playerScore++;
             } else if (winner === "computer") {
                 computerScore++;
             }
-            playerScoreDisplay.textContent = "Current player's score: " + playerScore;
-            computerScoreDisplay.textContent = "Current computer's score is: " + computerScore;
+            playerScoreDisplay.textContent = "Player score: " + playerScore;
+            computerScoreDisplay.textContent = "Computer score: " + computerScore;
             countRounds();
             break;
     }
@@ -142,12 +167,6 @@ playerButtonSelection.addEventListener('click', (buttonClicked) => {
 
 //Count rounds
 let round = 1;
-const roundCountDisplay = document.querySelector('.round-count');
-const resultsDisplay = document.querySelector('.results');
-const selectionDisplay = document.querySelector('.selections');
-const buttonPlayAgain = document.createElement('button');
-buttonPlayAgain.textContent = "Play again";
-const gameUI = document.querySelector('.game-ui');
 
 function countRounds() {
     //Count rounds from 1 to 5
@@ -177,8 +196,8 @@ buttonPlayAgain.addEventListener('click', () => {
     countRounds();
     playerScore = 0;
     computerScore = 0;
-    playerScoreDisplay.textContent = "Current player's score: " + playerScore;
-    computerScoreDisplay.textContent = "Current computer's score is: " + computerScore;
+    playerScoreDisplay.textContent = "Player score: " + playerScore;
+    computerScoreDisplay.textContent = "Computer score: " + computerScore;
 });
 
 //Determine game winner after 5 rounds
